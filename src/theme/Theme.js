@@ -1,4 +1,4 @@
-import React, { useState, useMemo, createContext } from 'react';
+import React, { useState, useMemo, createContext, useEffect } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => { } });
@@ -7,16 +7,22 @@ const Theme = (props) => {
 
     const { children } = props;
 
-    const [mode, setMode] = useState('light');
+    const [mode, setMode] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light');
 
     const colorMode = useMemo(
         () => ({
             toggleColorMode: () => {
-                setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+                localStorage.setItem('theme', localStorage.getItem('theme') === 'light' ? 'dark' : 'light');
+                setMode(localStorage.getItem('theme'));
             },
         }),
         [],
     );
+
+    useEffect(() => {
+        localStorage.setItem('theme', mode);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const theme = useMemo(
         () =>
