@@ -5,15 +5,21 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import IconButton from '@mui/material/IconButton';
 
-const FooterWrapper = styled.div`
-  height: 60px;
-  background-color: #ffffff;
-  padding:10px;
-`;
-const FooterText = styled.div`
-  font-size: 14px;
-  text-align: center;
-`;
+const FooterWrapper = styled.div(({ theme }) => {
+  return {
+    height: "60px",
+    backgroundColor: theme.palette.background.paper,
+    padding: "10px"
+  };
+});
+
+const FooterText = styled.div(({ theme }) => {
+  return {
+    fontSize: "14px",
+    textAlign: "center",
+    color: theme.palette.text.primary
+  };
+});
 
 const FooterContact = styled.div`
   display:flex;
@@ -22,16 +28,17 @@ const FooterContact = styled.div`
 `;
 
 const Footer = () => {
+
   return (
     <FooterWrapper id="contact">
       <FooterContact>
         <IconButton onClick={() => window.location = 'mailto:haritnak@gmail.com'}>
           <EmailIcon />
         </IconButton>
-        <IconButton onClick={() => window.location = "https://www.linkedin.com/in/harit-nakbandit-1a5bb9219/"}>
+        <IconButton onClick={() => window.open("https://www.linkedin.com/in/harit-nakbandit-1a5bb9219/")}>
           <LinkedInIcon />
         </IconButton>
-        <IconButton onClick={() => window.location = "https://github.com/HaritNakbandit"}>
+        <IconButton onClick={() => window.open("https://github.com/HaritNakbandit")}>
           <GitHubIcon />
         </IconButton>
       </FooterContact>

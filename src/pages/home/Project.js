@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Jaray from '../../assets/images/jaray.PNG';
+import { useTheme } from '@mui/material/styles';
 
 const ImgContent = styled.img`
   height:180px;
@@ -15,13 +16,17 @@ const ImgContent = styled.img`
   }
 `;
 
-const ContentYear = styled.div`
-  width:max-content;
-  padding: 2px 10px;
-  border-radius: 16px;
-  background-color:#142850;
-  color: #ffffff;
-`;
+const ContentYear = styled.div(({ theme }) => {
+    return {
+        width: "max-content",
+        padding: "2px 10px",
+        borderRadius: "16px",
+        backgroundColor: theme.palette.primary.main,
+        p: {
+            color: theme.palette.text.secondary
+        }
+    };
+});
 
 const LineBottom = styled.hr`
  border-top: 0px;
@@ -29,16 +34,18 @@ const LineBottom = styled.hr`
 `;
 
 const Project = () => {
+    const theme = useTheme();
+
     const data = [{
         img: Jaray,
         title: "Jaray Complaint Management System (JCOMS)",
         year: "2021",
         tool: "React.js, MUI",
         link: "http://www.jcoms.police.go.th/",
-        detail: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+        detail: "It is a website that helps people to make complaints or report clues. If a police officer behaves badly."
     }]
     return (
-        <PageWrapper id="project" backgroundColor={"#ffffff"}>
+        <PageWrapper id="project" backgroundColor={theme.palette.background.paper}>
             <Label fontSize={44} fontWeight={700}>Project</Label>
             {data.map((item, index) => (
                 <div key={index}>
@@ -46,7 +53,7 @@ const Project = () => {
                         container
                         direction={{ xs: "column-reverse", sm: "row", md: "row" }}
                         spacing={2}
-                        style={{ marginTop: "1rem" }}
+                        sx={{ marginTop: "1rem" }}
                     >
                         <Grid
                             item xs={3}
