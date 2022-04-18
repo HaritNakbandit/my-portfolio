@@ -19,6 +19,7 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%;
   justify-content:center;
   align-items:center;
 `;
@@ -27,7 +28,7 @@ const Loading = () => {
     return (
         <PageWrapper>
             <ContentWrapper>
-                <CircularProgress size={100} disableShrink />
+                <CircularProgress size={100} disableShrink sx={{ color: "#142850" }} />
             </ContentWrapper>
         </PageWrapper>
     );

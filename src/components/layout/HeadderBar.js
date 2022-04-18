@@ -125,7 +125,7 @@ const HeadderBar = (props) => {
             <IconButton
               edge="end"
               onClick={onIsDrawer(true)}
-              sx={{ display: { xs: "flex", md: "none" }, color: "black" }}
+              sx={{ display: { xs: "flex", md: "none" }, color: trigger ? theme.palette.text.primary : "#000" }}
             >
               <MenuIcon />
             </IconButton>
