@@ -1,17 +1,17 @@
 import Grid from '@mui/material/Grid';
 import styled from '@emotion/styled';
 import Profile from "../../assets/images/profile.jpg";
-import { Label } from '../../components/ui'
 import { Button } from '@mui/material';
 import PageWrapper from '../../components/layout/PageWrapper';
 import sample from '../../assets/images/bg.mp4';
 import Box from '@mui/material/Box';
+import Resume from '../../assets/files/resume_2022.pdf';
 
-const ImgProfile = styled.img`
-  height:250px;
-  width:250px;  
-  border-radius: 50%;
-  align-items: center;
+const Label = styled.p`
+ color: black;
+ font-size: ${(props) => props.fontSize ? props.fontSize + "px" : "16px"};
+ font-weight:${(props) => props.fontWeight} ;
+ margin:0;
 `;
 
 
@@ -35,9 +35,11 @@ const AboutMe = () => {
                         item xs={7}
                     >
                         <Box component="div" sx={{ display: "flex", flexDirection: "column", gap: { xs: "5px", md: "15px" } }}>
-                            <Label fontSize={44} fontWeight={700}>{"Harit Nakbandit"}<br />{"Frontend Developer"}</Label>
-                            <Label>{"Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."}</Label>
-                            <Button variant="contained" sx={{ width: "max-content", backgroundColor: "#142850" }}>{"Resume"}</Button>
+                            <Label fontSize={40} fontWeight={700}>{"Harit Nakbandit"}<br />{"Frontend Developer"}</Label>
+                            <Label fontSize={16} fontWeight={500}>{"I am a frontend developer with 1-year experience, most of my experience is web application development by React. I want to get a good job that can give me permanent income."}</Label>
+                            <a href={Resume} download="resume_harit">
+                                <Button variant="contained" sx={{ width: "max-content", backgroundColor: "#142850", '&:hover': { backgroundColor: "#142850" }, color: "#fff" }} >{"Resume"}</Button>
+                            </a>
                         </Box>
                     </Grid>
                     <Grid
@@ -46,7 +48,17 @@ const AboutMe = () => {
                         direction="row"
                         justifyContent="center"
                         alignItems="center">
-                        <ImgProfile src={Profile} alt={""} />
+                        <Box
+                            component="img"
+                            sx={{
+                                height: { xs: 200, md: 250 },
+                                width: { xs: 200, md: 250 },
+                                borderRadius: "50%",
+                                alignItems: "center"
+                            }}
+                            alt=""
+                            src={Profile}
+                        />
                     </Grid>
                 </Grid>
             </PageWrapper>

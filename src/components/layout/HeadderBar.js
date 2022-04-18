@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -11,32 +11,44 @@ import Zoom from '@mui/material/Zoom';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Drawer from '@mui/material/Drawer';
-
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import { useTheme } from '@mui/material/styles';
+import { ColorModeContext } from '../../theme/Theme'
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
+const AppBar = styled(MuiAppBar)(({ theme, ...props }) => {
+  return {
+    backgroundColor: props.trigger ? theme.palette.background.default : "transparent"
+  };
+});
 
-const AppBar = styled(MuiAppBar)`
-  background-color:  ${(prop) => prop.trigger ? "#EDF7FA" : "transparent"};
-`;
+const MenuLabel = styled.a(({ theme, ...props }) => {
+  return {
+    color: props.trigger ? theme.palette.text.primary : "#fff",
+    fontSize: "20px",
+    fontWeight: "500",
+    margin: "0",
+    textDecoration: "none",
+  };
+});
 
-const MenuLabel = styled.a`
- color:${(props) => props.trigger ? "#000" : "#fff"};
- font-size: 20px;
- font-weight: 500;
- margin:0;
- text-decoration:none;
-`;
-const MenuMobileLabel = styled(MenuLabel)`
- color: #000 !important;
-`;
+const MenuMobileLabel = styled(MenuLabel)(({ theme }) => {
+  return {
+    color: `${theme.palette.text.primary} !important`
+  };
+});
 
 const HeadderBar = (props) => {
   const { window } = props;
 
   const [isDrawer, setIsDrawer] = useState(false);
+  const theme = useTheme();
+  const colorMode = useContext(ColorModeContext);
+
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -83,6 +95,14 @@ const HeadderBar = (props) => {
             </ListItemText >
           </ListItem>
         ))}
+        <ListItem button onClick={colorMode.toggleColorMode}>
+          <ListItemText >
+            <IconButton sx={{ color: theme.palette.text.primary }} color="inherit">
+              {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+            </IconButton>
+            <MenuMobileLabel>{theme.palette.mode === 'dark' ? 'Light' : 'Dark'}</MenuMobileLabel>
+          </ListItemText >
+        </ListItem>
       </List>
       <Divider />
     </Box>
@@ -94,15 +114,18 @@ const HeadderBar = (props) => {
         <AppBar trigger={trigger ? trigger.toString() : undefined}>
           <Toolbar>
             <Typography component="div" sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: "none", md: "flex" }, flexDirection: "row", gap: "3rem" }}>
+            <Box sx={{ display: { xs: "none", md: "flex" }, flexDirection: "row", gap: "3rem", alignItems: "baseline" }}>
               {menuList.map((item, index) => (
                 <MenuLabel key={index} trigger={trigger} href={item.link}>{item.name}</MenuLabel>
               ))}
+              <IconButton sx={{ color: trigger ? theme.palette.text.primary : "#fff" }} onClick={colorMode.toggleColorMode} color="inherit">
+                {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+              </IconButton>
             </Box>
             <IconButton
               edge="end"
               onClick={onIsDrawer(true)}
-              sx={{ display: { xs: "flex", md: "none" } }}
+              sx={{ display: { xs: "flex", md: "none" }, color: "black" }}
             >
               <MenuIcon />
             </IconButton>
@@ -113,12 +136,12 @@ const HeadderBar = (props) => {
       {/* ScrollTop */}
       <ScrollTop trigger={trigger}>
         <Fab color="primary" size="small" aria-label="scroll back to top" sx={{
-          backgroundColor: "#142850",
+          backgroundColor: theme.palette.primary.main,
           '&:hover': {
-            backgroundColor: "#142850",
+            backgroundColor: theme.palette.primary.main,
           },
         }}>
-          <KeyboardArrowUpIcon />
+          <KeyboardArrowUpIcon sx={{ color: theme.palette.text.secondary }} />
         </Fab>
       </ScrollTop>
       {/* Drawer */}

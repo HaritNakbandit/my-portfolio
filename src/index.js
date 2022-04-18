@@ -4,12 +4,15 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './routes/publicRoute';
+import Theme from './theme/Theme'
 
 const AppWithRouter = () => {
   return (
+    <Theme>
       <BrowserRouter>
         <AppRouter />
       </BrowserRouter>
+    </Theme>
   );
 };
 

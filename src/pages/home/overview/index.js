@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import { Label } from '../../../components/ui';
 import PageWrapper from '../../../components/layout/PageWrapper';
-import MuiTabs from '@mui/material/Tabs';
+import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import styled from '@emotion/styled';
 import Education from './Education';
 import Experience from './Experience';
+import { useTheme } from '@mui/material/styles';
 
-const Tabs = styled(MuiTabs)`
- & .Mui-selected: {
-     color: #142850;
-  }
-`;
 
 const TabPanel = (props) => {
     const { children, value, index, ...other } = props;
+
 
     return (
         <div
@@ -44,19 +40,21 @@ const a11yProps = (index) => {
 
 const Overview = () => {
     const [value, setValue] = useState(0);
+    const theme = useTheme();
 
     const onChange = (event, newValue) => {
         setValue(newValue);
     };
 
     return (
-        <PageWrapper id={"overview"} backgroundColor={"#EDF7FA"}>
+        <PageWrapper id={"overview"} backgroundColor={theme.palette.background.default}>
             <Label fontSize={44} fontWeight={700}>Overview</Label>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={onChange}
+                    sx={{ color: theme.palette.text.primary }}
                     TabIndicatorProps={{
                         sx: {
-                            backgroundColor: '#142850',
+                            backgroundColor: theme.palette.divider,
                         },
                     }}
                     textColor="inherit"
