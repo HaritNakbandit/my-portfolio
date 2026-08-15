@@ -1,72 +1,55 @@
-# Getting Started with Create React App
+# my-portfolio
 
-url_web = https://harit-my-portfolio.netlify.app/
+Personal portfolio site built with Next.js 16 (App Router), React 19, TypeScript, and Tailwind CSS v4. Content is sourced from Contentful CMS.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Getting started
 
-## Available Scripts
+Prerequisites: Node.js 20.19+ (Next.js 16 requirement).
 
-In the project directory, you can run:
+```bash
+npm install
+npm run dev
+```
 
-### `npm start`
+Open [http://localhost:3000](http://localhost:3000).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Scripts
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+| Command            | Description                          |
+| ------------------ | ------------------------------------ |
+| `npm run dev`      | Start the dev server (Turbopack)     |
+| `npm run build`    | Production build (fully static)      |
+| `npm run start`    | Serve the production build           |
+| `npm run lint`     | Run ESLint                           |
 
-### `npm test`
+## Contentful setup
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The site fetches its content from Contentful. Create a `.env.local` file:
 
-### `npm run build`
+```env
+CONTENTFUL_SPACE_ID=your_space_id
+CONTENTFUL_ACCESS_TOKEN=your_access_token
+CONTENTFUL_ENVIRONMENT=master   # optional, defaults to master
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Content types (see `contentful-schema.md` for fields and `contentful-data.md` for seed values):
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `experience` — jobs/schools timeline; empty `endDate` means "Present"
+- `project` — portfolio projects
+- `skill` — skills grouped by `category`, `items` is a list
+- `profile` — singleton with name, jobTitle, bio, resumeFile, profilePhoto
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Remember to attach the `resumeFile` and `profilePhoto` assets to the `profile` entry — otherwise the site falls back to the files in `public/assets/`.
 
-### `npm run eject`
+## Project structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+src/
+├── app/(site)/page.tsx      # single page, data pulled from Contentful
+├── components/              # UI components
+├── config/                  # site configuration
+├── lib/
+│   ├── contentful/          # client, typed skeletons, per-type fetchers
+│   └── ...
+└── types/                   # shared types
+```
