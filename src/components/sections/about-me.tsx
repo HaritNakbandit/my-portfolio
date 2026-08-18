@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { Download, GithubIcon, LinkedinIcon, Mail } from "lucide-react";
-import { CONTACT, RESUME_PATH } from "@/config/site";
+import { CONTACT, RESUME_PATH, SITE_DESCRIPTION, SITE_JOB_TITLE, SITE_NAME } from "@/config/site";
 import { getProfile } from "@/lib/contentful";
 import HeroGrain from "@/components/ui/hero-grain";
 
 const FALLBACK = {
-  name: "Harit Nakbandit",
-  jobTitle: "Frontend Developer",
-  bio: "I am a front-end developer with 3 years of experience, with at least 2 years in mobile app development. Most of my work uses React and React Native, along with 6 months of experience in web development with Pega (Low code).",
+  name: SITE_NAME,
+  jobTitle: SITE_JOB_TITLE,
+  bio: SITE_DESCRIPTION,
   resumeUrl: RESUME_PATH,
   photoUrl: "/assets/profile.jpg",
 };

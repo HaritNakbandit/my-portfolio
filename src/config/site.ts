@@ -1,8 +1,9 @@
-export const SITE_URL = "https://haritnakbandit.dev";
+export const SITE_URL = "https://my-portfolio-harit.vercel.app";
 export const SITE_NAME = "Harit Nakbandit";
-export const SITE_TITLE = "Harit Nakbandit — Frontend Developer";
+export const SITE_JOB_TITLE = "Senior Software Engineer";
+export const SITE_TITLE = "Harit Nakbandit — Senior Software Engineer";
 export const SITE_DESCRIPTION =
-  "Portfolio of Harit Nakbandit, a front-end developer with 3 years of experience building web and mobile apps with React, React Native, and Flutter.";
+  "Portfolio of Harit Nakbandit, a software engineer with over 5 years of experience across React, React Native, Vue.js, and Laravel, building web and mobile applications.";
 
 export const CONTACT = {
   email: "haritnak@gmail.com",
