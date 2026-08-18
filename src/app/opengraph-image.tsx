@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { SITE_NAME } from "@/config/site";
+import { SITE_JOB_TITLE, SITE_NAME } from "@/config/site";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -57,7 +57,7 @@ const OpengraphImage = () => {
             marginTop: 12,
           }}
         >
-          Frontend Developer
+          {SITE_JOB_TITLE}
         </div>
         <div
           style={{
@@ -68,7 +68,7 @@ const OpengraphImage = () => {
             maxWidth: 780,
           }}
         >
-          React · React Native · Flutter — 3 years building web and mobile apps
+          React · React Native · Vue.js · Laravel — 5+ years building web and mobile apps
         </div>
       </div>
     ),

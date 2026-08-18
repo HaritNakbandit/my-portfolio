@@ -1,5 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { CONTACT, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/config/site";
+import {
+  CONTACT,
+  SITE_DESCRIPTION,
+  SITE_JOB_TITLE,
+  SITE_NAME,
+  SITE_TITLE,
+  SITE_URL,
+} from "@/config/site";
 
 export const siteMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -10,9 +17,11 @@ export const siteMetadata: Metadata = {
   description: SITE_DESCRIPTION,
   keywords: [
     "Harit Nakbandit",
-    "Frontend Developer",
+    "Senior Software Engineer",
     "React Developer",
     "React Native Developer",
+    "Vue.js Developer",
+    "Laravel Developer",
     "Web Developer Thailand",
     "Portfolio",
   ],
@@ -56,7 +65,7 @@ export const personJsonLd = {
   "@type": "Person",
   name: SITE_NAME,
   url: SITE_URL,
-  jobTitle: "Frontend Developer",
+  jobTitle: SITE_JOB_TITLE,
   email: `mailto:${CONTACT.email}`,
   sameAs: [CONTACT.github, CONTACT.linkedin],
 };
