@@ -69,3 +69,10 @@ export const personJsonLd = {
   email: `mailto:${CONTACT.email}`,
   sameAs: [CONTACT.github, CONTACT.linkedin],
 };
+
+export const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_TITLE,
+  url: SITE_URL,
+};
