@@ -5,7 +5,7 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import ScrollToTop from "@/components/layout/scroll-to-top";
 import IntroLoader from "@/components/ui/intro-loader";
-import { personJsonLd, siteMetadata, siteViewport } from "@/config/metadata";
+import { personJsonLd, siteMetadata, siteViewport, websiteJsonLd } from "@/config/metadata";
 
 export const metadata = siteMetadata;
 export const viewport = siteViewport;
@@ -18,6 +18,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
       </head>
       <body>
