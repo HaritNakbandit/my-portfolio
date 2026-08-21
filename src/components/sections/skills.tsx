@@ -60,7 +60,7 @@ const Skills = async () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
                 <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10 text-accent transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
-                  <Code2 size={16} />
+                  <Code2 size={16} aria-hidden="true" />
                 </span>
                 <p className="m-0 text-sm font-semibold text-ink">{group.category}</p>
               </div>
@@ -78,7 +78,7 @@ const Skills = async () => {
                     className="group/item flex items-center gap-2.5 rounded-lg border border-transparent px-2.5 py-2 transition-all duration-200 hover:-translate-y-0.5 hover:border-line hover:bg-surface"
                   >
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-accent/10 text-accent transition-colors duration-200 group-hover/item:bg-accent group-hover/item:text-white">
-                      <Icon size={16} />
+                      <Icon size={16} aria-hidden="true" />
                     </span>
                     <span className="text-sm font-medium whitespace-nowrap text-ink">
                       {item}

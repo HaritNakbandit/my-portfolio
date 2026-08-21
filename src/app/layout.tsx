@@ -4,7 +4,6 @@ import ThemeProvider from "@/components/theme/theme-provider";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import ScrollToTop from "@/components/layout/scroll-to-top";
-import IntroLoader from "@/components/ui/intro-loader";
 import { personJsonLd, siteMetadata, siteViewport, websiteJsonLd } from "@/config/metadata";
 
 export const metadata = siteMetadata;
@@ -25,10 +24,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         />
       </head>
       <body>
-        <IntroLoader />
         <ThemeProvider>
           <Header />
-          {children}
+          <main>{children}</main>
           <Footer />
           <ScrollToTop />
         </ThemeProvider>
