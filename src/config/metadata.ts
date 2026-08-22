@@ -17,11 +17,10 @@ export const siteMetadata: Metadata = {
   description: SITE_DESCRIPTION,
   keywords: [
     "Harit Nakbandit",
-    "Senior Software Engineer",
+    "Software Engineer",
     "React Developer",
     "React Native Developer",
-    "Vue.js Developer",
-    "Laravel Developer",
+    "Mobile App Developer",
     "Web Developer Thailand",
     "Portfolio",
   ],
