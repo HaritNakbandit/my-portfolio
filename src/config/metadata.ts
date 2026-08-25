@@ -40,7 +40,7 @@ export const siteMetadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_URL,
-    siteName: SITE_TITLE,
+    siteName: SITE_NAME,
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     locale: "en_US",
@@ -72,6 +72,6 @@ export const personJsonLd = {
 export const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: SITE_TITLE,
+  name: SITE_NAME,
   url: SITE_URL,
 };
