@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { client, resolveAssetUrl } from "@/lib/contentful/client";
 import type { ProjectSkeleton } from "@/lib/contentful/types";
 
@@ -10,7 +11,7 @@ export interface ProjectData {
   description: string;
 }
 
-export const getProjects = async (): Promise<ProjectData[]> => {
+export const getProjects = cache(async (): Promise<ProjectData[]> => {
   const res = await client.getEntries<ProjectSkeleton>({
     content_type: "project",
     order: ["-fields.year"],
@@ -24,4 +25,4 @@ export const getProjects = async (): Promise<ProjectData[]> => {
     link: item.fields.link,
     description: item.fields.description,
   }));
-};
+});

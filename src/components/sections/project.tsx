@@ -8,6 +8,8 @@ import { getProjects } from "@/lib/contentful";
 const Project = async () => {
   const data = await getProjects();
 
+  if (data.length === 0) return null;
+
   return (
     <PageWrapper id="project">
       <SectionHeading index="03" eyebrow="Selected work" title="Project" />
