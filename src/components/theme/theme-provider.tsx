@@ -16,9 +16,15 @@ interface ThemeContextValue {
 
 const THEME_KEY = "theme";
 
+const listeners = new Set<() => void>();
+
 const subscribe = (onStoreChange: () => void) => {
+  listeners.add(onStoreChange);
   window.addEventListener("storage", onStoreChange);
-  return () => window.removeEventListener("storage", onStoreChange);
+  return () => {
+    listeners.delete(onStoreChange);
+    window.removeEventListener("storage", onStoreChange);
+  };
 };
 
 const getSnapshot = (): ThemeMode => {
@@ -43,8 +49,11 @@ const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
   const toggleColorMode = useCallback(() => {
     const next: ThemeMode = mode === "light" ? "dark" : "light";
-    localStorage.setItem(THEME_KEY, next);
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch {}
     document.documentElement.classList.toggle("dark", next === "dark");
+    listeners.forEach((listener) => listener());
   }, [mode]);
 
   return (
