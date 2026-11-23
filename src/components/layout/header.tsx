@@ -12,9 +12,14 @@ const MENU_LIST: MenuItem[] = [
   { name: "Contact", link: "#contact" },
 ];
 
-const Header = () => {
+interface HeaderProps {
+  showProjects?: boolean;
+}
+
+const Header = ({ showProjects = true }: HeaderProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const menuList = showProjects ? MENU_LIST : MENU_LIST.filter((item) => item.link !== "#project");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 0);
@@ -37,7 +42,7 @@ const Header = () => {
           </a>
 
           <nav className="hidden items-center gap-8 md:flex">
-            {MENU_LIST.map((item) => (
+            {menuList.map((item) => (
               <a
                 key={item.name}
                 href={item.link}
@@ -80,7 +85,7 @@ const Header = () => {
               </button>
             </div>
             <ul>
-              {MENU_LIST.map((item) => (
+              {menuList.map((item) => (
                 <li key={item.name} className="border-t border-line">
                   <a
                     href={item.link}
