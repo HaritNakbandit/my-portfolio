@@ -1,5 +1,6 @@
 import type { TimelineEntry } from "@/types";
 import Reveal from "@/components/ui/reveal";
+import RoleDescription from "@/components/ui/role-description";
 
 interface TimelineProps {
   data: TimelineEntry[];
@@ -42,11 +43,7 @@ const Timeline = ({ data }: TimelineProps) => {
                         <span className="text-sm font-medium text-ink">{role.role}</span>
                         <span className="text-xs text-muted">{role.timeLine}</span>
                       </div>
-                      {role.description && (
-                        <span className="text-sm leading-relaxed text-muted">
-                          {role.description}
-                        </span>
-                      )}
+                      {role.description && <RoleDescription text={role.description} />}
                     </div>
                   ))}
                 </div>
@@ -54,9 +51,7 @@ const Timeline = ({ data }: TimelineProps) => {
                 <div className="flex flex-col gap-0.5">
                   <span className="text-sm font-medium text-ink">{group.roles[0].role}</span>
                   {group.roles[0].description && (
-                    <span className="text-sm leading-relaxed text-muted">
-                      {group.roles[0].description}
-                    </span>
+                    <RoleDescription text={group.roles[0].description} />
                   )}
                 </div>
               )}
